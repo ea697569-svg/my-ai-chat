@@ -1,7 +1,7 @@
 import streamlit as st
 from groq import Groq
 
-st.title("⚡ My Fast Cloud AI Assistant")
+st.title("🤖 Temi's Personal AI Assistant")
 st.caption("Running 100% free via Groq Cloud — Perfect for Chromebooks!")
 
 GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
@@ -26,10 +26,14 @@ if user_prompt := st.chat_input("Type your message here..."):
     with st.chat_message("assistant"):
         with st.spinner("Groq AI is typing..."):
             try:
+                # Fixed spacing structure so Python runs smoothly
                 response = client.chat.completions.create(
                     model="qwen/qwen3.8-27b",
                     messages=[
-                        {"role": "system", "content": "You are a helpful website chatbot assistant."},
+                        {
+                            "role": "system", 
+                            "content": "You are a helpful website chatbot assistant. Your official name is Temi's Assistant. If a user asks what your name is, who you are, or who built you, always answer proudly using your official name!"
+                        },
                         {"role": "user", "content": user_prompt}
                     ],
                     max_tokens=256,
